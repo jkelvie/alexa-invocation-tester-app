@@ -73,3 +73,6 @@ VOLUME ["/home/node/.ask", "/home/node/.aws", "/home/node/.bst", "/home/node/app
 
 # Default folder for developers to work in
 WORKDIR /home/node/app
+
+# exectute start up script
+ENTRYPOINT ["/entrypoint.sh"]
