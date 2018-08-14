@@ -1,6 +1,6 @@
 # Original source from https://hub.docker.com/_/node/
 FROM node:9.7.1-alpine
-MAINTAINER Martin DSouza <martin@talkapex.com>
+MAINTAINER Neal Shyam <neal@spokenlayer.com>
 
 
 # NPM_CONFIG_PREFIX: See below
@@ -14,18 +14,46 @@ RUN apk add --update \
   python \
   make \
   bash \
-  py-pip
+  py-pip \
+  jq
+
+# basic flask environment
+RUN apk add --no-cache bash git nginx uwsgi uwsgi-python py2-pip \
+	&& pip2 install --upgrade pip \
+	&& pip2 install flask
+
+# application folder
+ENV APP_DIR /app
+
+# app dir
+RUN mkdir ${APP_DIR} \
+	&& chown -R nginx:nginx ${APP_DIR} \
+	&& chmod 777 /run/ -R \
+	&& chmod 777 /root/ -R
+VOLUME [${APP_DIR}]
+WORKDIR ${APP_DIR}
+
+# expose web server port
+# only http, for ssl use reverse proxy
+EXPOSE 80
+
+# copy config files into filesystem
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY app.ini /app.ini
+COPY entrypoint.sh /entrypoint.sh
+
 
 # See https://github.com/nodejs/docker-node/issues/603
 # ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
-WORKDIR /app
+#WORKDIR /app
 USER node
 
 # /home/node/.ask: For ask CLI configuration file
 # /home/node/.ask: Folder to map to for app development
-RUN npm install -g ask-cli && \
+RUN npm install -g ask-cli bst && \
   mkdir /home/node/.ask && \
   mkdir /home/node/.aws && \
+  mkdir /home/node/.bst && \
   mkdir /home/node/app && \
   pip install awscli --upgrade --user
 
@@ -34,9 +62,11 @@ WORKDIR /$NPM_CONFIG_PREFIX/lib/node_modules/ask-cli
 RUN npm install simple-oauth2@1.5.0 --save-exact
 
 # Volumes:
-# /home/node/.ask: This is the location of the ask config folder
+# /home/node/.ask: This is the location of the ask cli config folder
+# /home/node/.aws: This is the location of the aws sdk config folder
+# /home/node/.bst: This is the location of the bespoken config folder
 # /home/node/app: Your development folder
-VOLUME ["/home/node/.ask", "/home/node/.aws", "/home/node/app"]
+VOLUME ["/home/node/.ask", "/home/node/.aws", "/home/node/.bst", "/home/node/app"]
 
 # Enable this if you want the container to permanently run
 # CMD ["/bin/bash"]
