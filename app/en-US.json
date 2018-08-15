@@ -1,0 +1,19 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "cold coffee",
+      "intents": [
+        {
+          "name": "HelloWorldIntent",
+          "samples": [
+            "start",
+            "open",
+            "open the",
+            "what's the latest from",
+            "what's the latest from the"
+          ]
+        }
+      ]
+    }
+  }
+}

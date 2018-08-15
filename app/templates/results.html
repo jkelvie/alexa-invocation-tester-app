@@ -1,0 +1,40 @@
+
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Alexa Invocation Name Tester | SpokenLayer</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Alexa Invocation Name Tester">
+  <meta name="author" content="Neal Shyam @ SpokenLayer">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='//fonts.googleapis.com/css?family=Roboto+Slab|Roboto:400,400italic,500|Roboto+Condensed' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <p id="logo-holder"><a href="https://www.spokenlayer.com" target="_new"><img id="logo" src="{{ url_for('static', filename='img/logo.png') }}" width="250"></a></p>
+  <h2>Alexa Invocation Tester</h2>
+  <div>
+  <div id="results-box">
+    <h2 id="results-text">Results</h2>
+    <div id="results">{{results | safe}}</div>
+    <p style="padding-top:.75rem;"><a href="/reset"  class="button reset-button">Test another invocation</a></p>
+  </div>
+  <div style="text-align:left; padding-top:.5rem;">
+    <hr>
+    <p>&copy; 2018 SpokenLayer</p>
+  </div>
+
+</body>
+
+<!-- JaVAVAVAVAVaScript -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+<!--<script src="{{ url_for('static', filename='js/script.js') }}"></script>-->
+</html>

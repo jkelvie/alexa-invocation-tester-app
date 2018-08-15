@@ -1,0 +1,88 @@
+
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Alexa Invocation Name Tester | SpokenLayer</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Alexa Invocation Name Tester">
+  <meta name="author" content="Neal Shyam @ SpokenLayer">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='//fonts.googleapis.com/css?family=Roboto+Slab|Roboto:400,400italic,500|Roboto+Condensed' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <p id="logo-holder"><a href="https://www.spokenlayer.com" target="_new"><img id="logo" src="{{ url_for('static', filename='img/logo.png') }}" width="250"></a></p>
+  <h2>Alexa Invocation Tester</h2>
+  <div>
+    <!--<p>CTA</p>-->
+    <form id="form" action="/" method="POST">
+      <p><input type="text" name="invocation" id="invocation" placeholder="Your Invocation Name" required class="invocation"><input id="submit" type="submit" value="&rarr;" class="button"></p>
+      <p id="loading"></p>
+      <p id="issues">&nbsp;</p> 
+    </form>
+  </div>
+  <div style="text-align:left;">
+    <p><a href="https://developer.amazon.com/docs/custom-skills/choose-the-invocation-name-for-a-custom-skill.html#cert-invocation-name-req" target="_new">Official invocation name guidelines</a></p>
+    <div id="accordion">
+      <p class="accordion-toggle"><strong>Keywords you can't use with &lt;2 words</strong></p>
+      <ul class="accordion-content">
+        <li>the</li>
+        <li>a</li>
+        <li>an</li>
+        <li>for</li>
+        <li>to</li>
+        <li>for</li>
+      </ul>
+      <p class="accordion-toggle"><strong>Reserved keywords</strong></p>
+      <ul class="accordion-content">
+        <li>open</li>
+        <li>launch</li>
+        <li>ask</li>
+        <li>tell</li>
+        <li>load</li>
+        <li>begin</li>
+        <li>enable</li>
+        <li>to</li>
+        <li>from</li>
+        <li>by</li>
+        <li>if</li>
+        <li>whether</li>
+        <li>news</li>
+        <li>amazon</li>
+        <li>alexa</li>
+        <li>echo</li>
+        <li>skill</li>
+        <li>app</li>
+        <li>update</li>
+        <li>briefing</li>
+      </ul>
+      <p class="accordion-toggle"><strong>Keywords that cause issues</strong></p>
+      <ul class="accordion-content">
+        <li>broadcast</li>
+        <li>headlines</li>
+        <li>today</li>
+        <li>daily</li>
+        <li>brief</li>
+        <li>headlines</li>
+        <li>on</li>
+        <li>&amp;</li>
+      </ul>
+    </div>
+    <hr>
+    <p>&copy; 2018 SpokenLayer</p>
+  </div>
+
+</body>
+
+<!-- JaVAVAVAVAVaScript -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</html>

@@ -40,6 +40,7 @@ EXPOSE 80
 # copy config files into filesystem
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY app.ini /app.ini
+COPY startup.sh /startup.sh
 COPY entrypoint.sh /entrypoint.sh
 
 
@@ -50,7 +51,7 @@ USER node
 
 # /home/node/.ask: For ask CLI configuration file
 # /home/node/.ask: Folder to map to for app development
-RUN npm install -g ask-cli bst && \
+RUN npm install -g ask-cli bespoken-tools && \
   mkdir /home/node/.ask && \
   mkdir /home/node/.aws && \
   mkdir /home/node/.bst && \
@@ -68,11 +69,15 @@ RUN npm install simple-oauth2@1.5.0 --save-exact
 # /home/node/app: Your development folder
 VOLUME ["/home/node/.ask", "/home/node/.aws", "/home/node/.bst", "/home/node/app"]
 
-# Enable this if you want the container to permanently run
-# CMD ["/bin/bash"]
+
 
 # Default folder for developers to work in
 WORKDIR /home/node/app
 
-# exectute start up script
+# execute start up script
+#RUN ["chmod", "+x", "/entrypoint.sh"]
+#RUN ["chmod", "+x", "/startup.sh"]
 ENTRYPOINT ["/entrypoint.sh"]
+#CMD /entrypoint.sh
+# Enable this if you want the container to permanently run
+CMD ["/bin/bash"]
