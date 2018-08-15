@@ -73,14 +73,14 @@ printf "<p>Your invocation name: <span class=\"purple\">$lc</span></p>"
 # UPDATE INVOCATION NAME & LAMBDA (interaction model & lambda)
 jq ".interactionModel.languageModel.invocationName = \"$lc\"" /home/node/app/models/en-US.json > en-US.json
 
-ask api update-model --skill-id "amzn1.ask.skill.83f2fa62-6266-43ab-a438-56b6ccd422f0" \
+ask api update-model --skill-id "$SKILLID" \
 --file "en-US.json" \
 --locale "en-US" \
---profile SL > /dev/null 2>&1 #direct output to null, to cut down on terminal output #\
+--profile $PROFILE > /dev/null 2>&1 #direct output to null, to cut down on terminal output #\
 #--debug
 
 aws lambda update-function-configuration \
---function-name "arn:aws:lambda:us-east-1:321192638146:function:alexa-invocation-tester" \
+--function-name "$LAMBDAID" \
 --environment Variables={invocation="\"$lc\""} > /dev/null 2>&1 #direct output to null, to cut down on terminal output
 
 # SLEEP 60s, so our model actually updates
