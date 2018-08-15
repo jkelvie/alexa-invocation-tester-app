@@ -88,7 +88,7 @@ printf "${GREEN}OK, your invocation name is: $lc\n$RESTORE"
 
 # UPDATE INVOCATION NAME (interaction model & lambda)
 printf "\n${YELLOW}UPDATING INTERACTION MODEL\n$RESTORE"
-jq ".interactionModel.languageModel.invocationName = \"$lc\"" /home/node/app/models/en-US.json > en-US.json
+jq ".interactionModel.languageModel.invocationName = \"$lc\"" /home/node/app/skill/en-US.json > en-US.json
 
 #printf updating interaction model
 ask api update-model --skill-id "$SKILLID" \

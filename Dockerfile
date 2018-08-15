@@ -18,7 +18,7 @@ RUN apk add --update --no-cache \
   jq
 
 # basic flask environment
-RUN apk add --no-cache bash git nginx uwsgi uwsgi-python py2-pip \
+RUN apk add --no-cache bash git nginx uwsgi uwsgi-python py2-pip nano \
 	&& pip2 install --upgrade pip \
 	&& pip2 install flask
 
@@ -63,7 +63,7 @@ WORKDIR /$NPM_CONFIG_PREFIX/lib/node_modules/ask-cli
 RUN npm install simple-oauth2@1.5.0 --save-exact
 
 #RUN groupadd -r appuser -g 901 && useradd -u 901 -r -g appuser 
-USER root
+#USER root
 
 # Volumes:
 # /home/node/.ask: This is the location of the ask cli config folder

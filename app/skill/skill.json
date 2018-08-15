@@ -1,0 +1,50 @@
+{
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "summary": "SL Invocation Tester",
+          "examplePhrases": [
+            "Alexa, open hello world",
+            "Alexa, launch hello world",
+            "Alexa, start hello world"
+          ],
+          "keywords": [
+            "foo",
+            "bar",
+            "baz"
+          ],
+          "name": "Invocation Tester",
+          "smallIconUri": "https://res.cloudinary.com/spokenlayer/image/upload/d_SpokenLayer_Logo_Verticle_fb9a1b.png/t_alexa_108/cover_art/foo.png",
+          "description": "SL Invocation Tester",
+          "largeIconUri": "https://res.cloudinary.com/spokenlayer/image/upload/d_SpokenLayer_Logo_Verticle_fb9a1b.png/t_alexa_512/cover_art/foo.png"
+        }
+      },
+      "isAvailableWorldwide": true,
+      "testingInstructions": "something something something",
+      "category": "NEWS",
+      "distributionCountries": []
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "uri": "arn:aws:lambda:us-east-1:321192638146:function:alexa-invocation-tester"
+        },
+        "interfaces": []
+      }
+    },
+    "manifestVersion": "1.0",
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "locales": {
+        "en-US": {
+          "privacyPolicyUrl": "http://spokenlayer.com/privacy"
+        }
+      },
+      "isExportCompliant": true,
+      "containsAds": true,
+      "isChildDirected": false,
+      "usesPersonalInfo": false
+    }
+  }
+}

@@ -71,7 +71,7 @@ fi
 printf "<p>Your invocation name: <span class=\"purple\">$lc</span></p>"
 
 # UPDATE INVOCATION NAME & LAMBDA (interaction model & lambda)
-jq ".interactionModel.languageModel.invocationName = \"$lc\"" /home/node/app/models/en-US.json > en-US.json
+jq ".interactionModel.languageModel.invocationName = \"$lc\"" /home/node/app/skill/en-US.json > en-US.json
 
 ask api update-model --skill-id "$SKILLID" \
 --file "en-US.json" \

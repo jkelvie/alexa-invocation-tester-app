@@ -39,7 +39,7 @@ def main():
     invocation = request.form['invocation']
   
   if os.environ['LOCK'] is "True": 
-    return Response(render_template('results.html', results="<p class=\"red\">There's another test running right now, please try again later.</p><p>If you can't wait though, go ahead and <a href=\"/reset\">reset</a> it.</p>"), mimetype='text/html'), 403
+    return Response(render_template('lock.html', results="<p class=\"red\">There's another test running right now, please try again later.</p><p>If you can't wait though, go ahead and <a href=\"/reset\">reset</a> it.</p>"), mimetype='text/html'), 403
   else:
     results = invocation_test(invocation) # run test
     os.environ['LOCK']="False"            # reset job lock
