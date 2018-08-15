@@ -4,3 +4,7 @@ node_modules/
 app/results.txt
 .env
 *.pyc
+
+ask-config/
+aws-config/
+bst-config/

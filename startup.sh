@@ -1,9 +1,5 @@
 #!/bin/bash
 
-printf "**SETTING ENV VARIABLES & ALIASES**\n\n"
-# set env variables
-
-
 # useful aliases
 alias invoke="/home/node/app/invoke.sh"
 alias rel="source /entrypoint.sh"
@@ -38,4 +34,5 @@ function awslog {
 }
 
 printf "**WELCOME TO THE SPOKENLAYER ALEXA SKILL MANAGEMENT SERVER**\n\n"
-exec "$@"
+#exec "$@"
+python app.py

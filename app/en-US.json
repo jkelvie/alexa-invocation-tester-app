@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "cold coffee",
+      "invocationName": "rolling chair",
       "intents": [
         {
           "name": "HelloWorldIntent",
