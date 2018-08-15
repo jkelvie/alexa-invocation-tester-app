@@ -2,3 +2,5 @@ node_modules/
 *.zip
 .DS_Store
 app/results.txt
+.env
+*.pyc

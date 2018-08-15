@@ -10,7 +10,7 @@ ENV TZ="GMT" \
   PATH="${PATH}:/home/node/.npm-global/bin/:/home/node/.local/bin/"
 
 # Required pre-reqs for ask cli
-RUN apk add --update \
+RUN apk add --update --no-cache \
   python \
   make \
   bash \
@@ -35,7 +35,7 @@ WORKDIR ${APP_DIR}
 
 # expose web server port
 # only http, for ssl use reverse proxy
-EXPOSE 80
+EXPOSE 5000
 
 # copy config files into filesystem
 COPY nginx.conf /etc/nginx/nginx.conf
@@ -62,14 +62,15 @@ RUN npm install -g ask-cli bespoken-tools && \
 WORKDIR /$NPM_CONFIG_PREFIX/lib/node_modules/ask-cli
 RUN npm install simple-oauth2@1.5.0 --save-exact
 
+#RUN groupadd -r appuser -g 901 && useradd -u 901 -r -g appuser 
+USER root
+
 # Volumes:
 # /home/node/.ask: This is the location of the ask cli config folder
 # /home/node/.aws: This is the location of the aws sdk config folder
 # /home/node/.bst: This is the location of the bespoken config folder
 # /home/node/app: Your development folder
 VOLUME ["/home/node/.ask", "/home/node/.aws", "/home/node/.bst", "/home/node/app"]
-
-
 
 # Default folder for developers to work in
 WORKDIR /home/node/app
@@ -78,6 +79,5 @@ WORKDIR /home/node/app
 #RUN ["chmod", "+x", "/entrypoint.sh"]
 #RUN ["chmod", "+x", "/startup.sh"]
 ENTRYPOINT ["/entrypoint.sh"]
-#CMD /entrypoint.sh
 # Enable this if you want the container to permanently run
 CMD ["/bin/bash"]
