@@ -55,7 +55,10 @@ It is also a prototype for a general Alexa Skill Management Server (asms)
 
 ### Step 4. Test it out!
 
-Go to [http://localhost:80](http://localhost:80) in your browser and test an invocation name. Wash. Repeat.
+1. Go to [http://localhost:80](http://localhost:80) in your browser and test an invocation name. Tests can take 3-4 minutes, so please be patient. 
+2. Test the invocation name on a physical device linked to your amazon dev / ASK account. Sometimes the 1st test fails due to timing, but passes IRL.
+3. Press the 'test another invocation' button. Wash. Repeat.
+4. Since you are modifying a real lambda/alexa skill, you can only run 1 test at a time. If you need to cancel an inprogress test or get stuck in a "another test is running" situation, go to [http://localhost:80/reset](http://localhost:80/reset) to reset the app and try again.
 
 ## Links:
 
