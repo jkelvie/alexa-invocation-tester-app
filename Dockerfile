@@ -42,11 +42,12 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY app.ini /app.ini
 COPY startup.sh /startup.sh
 COPY entrypoint.sh /entrypoint.sh
+COPY app/ /home/node/app/
 
+RUN chmod 777 /home/node/app -R
 
 # See https://github.com/nodejs/docker-node/issues/603
 # ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
-#WORKDIR /app
 USER node
 
 # /home/node/.ask: For ask CLI configuration file
@@ -55,22 +56,18 @@ RUN npm install -g ask-cli bespoken-tools && \
   mkdir /home/node/.ask && \
   mkdir /home/node/.aws && \
   mkdir /home/node/.bst && \
-  mkdir /home/node/app && \
   pip install awscli --upgrade --user
 
 # Patch for  https://github.com/martindsouza/docker-amazon-ask-cli/issues/1
 WORKDIR /$NPM_CONFIG_PREFIX/lib/node_modules/ask-cli
 RUN npm install simple-oauth2@1.5.0 --save-exact
 
-#RUN groupadd -r appuser -g 901 && useradd -u 901 -r -g appuser 
-#USER root
-
 # Volumes:
 # /home/node/.ask: This is the location of the ask cli config folder
 # /home/node/.aws: This is the location of the aws sdk config folder
 # /home/node/.bst: This is the location of the bespoken config folder
 # /home/node/app: Your development folder
-VOLUME ["/home/node/.ask", "/home/node/.aws", "/home/node/.bst", "/home/node/app"]
+VOLUME ["/home/node/.ask", "/home/node/.aws", "/home/node/.bst"]
 
 # Default folder for developers to work in
 WORKDIR /home/node/app

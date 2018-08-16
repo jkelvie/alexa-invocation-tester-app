@@ -17,7 +17,7 @@ It is also a prototype for a general Alexa Skill Management Server (asms)
 7. Update `skill/skill.json` with new lambda arn
 8. Create a new Alexa Skill using the ASK CLI & the json manifests in `/skill`
 9. Enable your Alexa Skill for testing using the ASK CLI
-10. Link your Lambda & Alexa Skill within the AWS console so one can trigger the other
+10. Link your Lambda & Alexa Skill within the AWS Lambda console so can talk to each other
 11. Rename the `.env.example` file to `.env` and update the `SKILLID`, `LAMBDAID`, and `PROFILE` variables with your skill id, lambda arn, and ask profile name
 12. Build the docker container: `docker build -t asms .`
 13. Launch the docker container: 
@@ -31,7 +31,7 @@ It is also a prototype for a general Alexa Skill Management Server (asms)
   --env-file ./.env \
   asms"
   ```
-12. Go to localhost in your browser and test an invocation name
+14. Go to localhost in your browser and test an invocation name
 
 ## Links:
 
