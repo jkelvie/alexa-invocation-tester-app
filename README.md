@@ -40,18 +40,15 @@ It is also a prototype for a general Alexa Skill Management Server (asms)
 
 
 ### Step 3: Build & Run Docker image
-1. Copy contents of `~/.aws` to `/aws-config`
-2. Copy contents of `~/.ask` to `/ask-config`
-3. Copy contents of `~/.bst` to `/bst-config`
-4. Rename the `.env.example` file to `.env` and update the `SKILLID`, `LAMBDAID`, and `PROFILE` variables with your skill id, lambda arn, and ask profile name
-5. Build the docker container: `docker build -t asms .`
-6. Launch the docker container: 
+1. Rename the `.env.example` file to `.env` and update the `SKILLID`, `LAMBDAID`, and `PROFILE` variables with your skill id, lambda arn, and ask profile name
+2. Build the docker image: `docker build -t asms .`
+3. Run the container by passing in your env variables + ask/aws/bst credentials and forwarding the server to your local machine at port 80: 
   ```
   docker run --name asms -it --rm \
   -p 80:5000 \
-  -v $(pwd)/ask-config:/home/node/.ask \
-  -v $(pwd)/aws-config:/home/node/.aws \
-  -v $(pwd)/bst-config:/home/node/.bst \
+  -v ~.aws:/home/node/.ask \
+  -v ~.ask:/home/node/.aws \
+  -v ~.bst:/home/node/.bst \
   --env-file ./.env \
   asms"
   ```
